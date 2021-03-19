@@ -2,8 +2,8 @@ package com.example.demo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository  extends JpaRepository<BookEntity,String> {
+public interface BookRepository  extends JpaRepository<Book,String> {
 
-    BookEntity findById(Long id);
+    Book findById(Long id);
 
 }

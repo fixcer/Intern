@@ -8,10 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "books")
+@Table(name = "magazines")
 @Getter
 @Setter
-public class BookEntity {
+public class Magazine {
 
     @Id
     private Long id;
@@ -19,6 +19,6 @@ public class BookEntity {
     private String title;
     private String isbn;
     private String author;
-    private String note;
+    private String publicDate;
 
 }

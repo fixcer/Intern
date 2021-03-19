@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.Map;
+
 public class Author {
     public String email;
     public String firstName;
@@ -9,6 +11,10 @@ public class Author {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Author() {
+
     }
 
     public String getEmail() {
@@ -34,4 +40,5 @@ public class Author {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

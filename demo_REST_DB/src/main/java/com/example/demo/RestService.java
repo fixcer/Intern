@@ -16,8 +16,8 @@ public class RestService {
         this.bookRepository = bookRepository;
     }
 
-    public BookEntity getBookStats(Long id){
-        BookEntity bookEntity = bookRepository.findById(id);
+    public Book getBookStats(Long id){
+        Book bookEntity = bookRepository.findById(id);
         return bookEntity;
     }
 }
