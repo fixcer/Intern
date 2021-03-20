@@ -3,14 +3,20 @@ package com.example.demo;
 import java.io.*;
 import java.util.*;
 
+import com.example.demo.model.Author;
+import com.example.demo.model.Book;
+import com.example.demo.model.Magazine;
+import com.example.demo.repository.AuthorRepository;
+import com.example.demo.service.AuthorService;
 import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.HeaderColumnNameTranslateMappingStrategy;
 
-public class CSVToBean {
+public class CSVToDB {
 
-    public static void authorBean(String file) {
+    public static final String dir = "/home/toan/Documents/Intern/Java/data/";
+
+    public List<Author> authorBean(String file) {
         // Hashmap to map CSV data to Bean attributes.
         Map<String, String> mapping = new HashMap<String, String>();
         mapping.put("email", "Email");
@@ -26,7 +32,7 @@ public class CSVToBean {
         CSVReader csvReader = null;
 
         try {
-            csvReader = new CSVReader(new FileReader(file), ';');
+            csvReader = new CSVReader(new FileReader(dir + file), ';');
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -35,16 +41,15 @@ public class CSVToBean {
 
         List<Author> authors = csvToBean.parse(strategy, csvReader);
 
-        for (Author author: authors) {
-            System.out.println(author);
-        }
+        return authors;
+
     }
 
-    public static void bookBean(String file) {
+    public List<Book> bookBean(String file) {
         // Hashmap to map CSV data to Bean attributes.
         Map<String, String> mapping = new HashMap<String, String>();
         mapping.put("title", "Title");
-        mapping.put("isbn", "ISBN");
+        mapping.put("isbn", "Isbn");
         mapping.put("authors", "Authors");
         mapping.put("description", "Description");
 
@@ -57,7 +62,7 @@ public class CSVToBean {
         CSVReader csvReader = null;
 
         try {
-            csvReader = new CSVReader(new FileReader(file), ';');
+            csvReader = new CSVReader(new FileReader(dir + file), ';');
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -66,12 +71,10 @@ public class CSVToBean {
 
         List<Book> books = csvToBean.parse(strategy, csvReader);
 
-        for (Book book: books) {
-            System.out.println(book);
-        }
+        return books;
     }
 
-    public static void magazineBean(String file) {
+    public List<Magazine> magazineBean(String file) {
         // Hashmap to map CSV data to Bean attributes.
         Map<String, String> mapping = new HashMap<String, String>();
         mapping.put("title", "Title");
@@ -88,7 +91,7 @@ public class CSVToBean {
         CSVReader csvReader = null;
 
         try {
-            csvReader = new CSVReader(new FileReader(file), ';');
+            csvReader = new CSVReader(new FileReader(dir + file), ';');
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -97,9 +100,7 @@ public class CSVToBean {
 
         List<Magazine> magazines = csvToBean.parse(strategy, csvReader);
 
-        for (Magazine magazine: magazines) {
-            System.out.println(magazine);
-        }
+        return magazines;
     }
 
 }
