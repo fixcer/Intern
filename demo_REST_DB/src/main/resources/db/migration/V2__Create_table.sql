@@ -1,0 +1,22 @@
+CREATE TABLE IF NOT EXISTS authors (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR NOT NULL,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS books (
+   id SERIAL PRIMARY KEY,
+   title VARCHAR NOT NULL,
+   isbn VARCHAR NOT NULL,
+   authors VARCHAR NOT NULL,
+   description VARCHAR NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS magazines (
+   id SERIAL PRIMARY KEY,
+   title VARCHAR NOT NULL,
+   isbn VARCHAR NOT NULL,
+   authors VARCHAR NOT NULL,
+   publication_date VARCHAR NOT NULL
+);
