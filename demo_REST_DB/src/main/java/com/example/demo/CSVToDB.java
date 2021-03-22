@@ -79,8 +79,8 @@ public class CSVToDB {
         Map<String, String> mapping = new HashMap<String, String>();
         mapping.put("title", "Title");
         mapping.put("isbn", "ISBN");
-        mapping.put("authors", "Authors");
-        mapping.put("publicDate", "PublicDate");
+        mapping.put("author", "Authors");
+        mapping.put("publicationDate", "PublicationDate");
 
         // HeaderColumnNameTranslateMappingStrategy for Book class
         HeaderColumnNameTranslateMappingStrategy<Magazine> strategy =

@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Author;
 import com.example.demo.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,6 +23,11 @@ public class IndexController {
     private AuthorService authorService;
     private BookService bookService;
     private MagazineService magazineService;
+
+    public IndexController(BookService bookService, MagazineService magazineService) {
+        this.bookService = bookService;
+        this.magazineService = magazineService;
+    }
 
     @GetMapping
     public String sayHello() {
@@ -44,13 +46,14 @@ public class IndexController {
                 authorService.createAuthor(author);
             }
 
-//            for (Book book: books) {
-//                bookService.createBook(book);
-//            }
-//
-//            for (Magazine magazine: magazines) {
-//                magazineService.createMagazine(magazine);
-//            }
+            for (Book book: books) {
+                bookService.createBook(book);
+            }
+
+            for (Magazine magazine: magazines) {
+                magazineService.createMagazine(magazine);
+            }
+
 
             return "Da them du lieu thanh cong";
         } catch (NullPointerException e){

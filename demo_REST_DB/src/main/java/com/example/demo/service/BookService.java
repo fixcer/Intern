@@ -26,8 +26,7 @@ public class BookService {
     }
 
     public List<Book> findAll() {
-        List<Book> books = bookRepository.findAll();
-        return books;
+        return bookRepository.findAll();
     }
 
     public Book createBook(Book book) {

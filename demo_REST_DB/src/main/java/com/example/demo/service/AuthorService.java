@@ -22,8 +22,7 @@ public class AuthorService {
     }
 
     public Author findByEmail(String email) {
-        Author author = authorRepository.findByEmail(email);
-        return author;
+        return authorRepository.findByEmail(email);
     }
 
     public Author findById(Long id) {
@@ -31,8 +30,7 @@ public class AuthorService {
     }
 
     public List<Author> findAll() {
-        List<Author> authors = authorRepository.findAll();
-        return authors;
+        return authorRepository.findAll();
     }
 
     public Author createAuthor(Author author) {

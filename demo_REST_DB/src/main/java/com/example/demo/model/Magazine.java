@@ -2,13 +2,15 @@ package com.example.demo.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "magazines")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 public class Magazine {
@@ -24,9 +26,20 @@ public class Magazine {
     private String isbn;
 
     @NotBlank
-    private String authors;
+    private String publicationDate;
 
     @NotBlank
-    private String publicDate;
+    private String authors;
+
+    @Override
+    public String toString() {
+        return "Magazine: {" +
+                "title=" + title +
+                ", isbn='" + isbn + '\'' +
+                ", authors='" + authors + '\'' +
+                ", publication_date='" + publicationDate + '\'' +
+                "}";
+    }
+
 
 }

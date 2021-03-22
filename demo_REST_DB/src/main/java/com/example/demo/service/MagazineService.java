@@ -40,8 +40,8 @@ public class MagazineService {
 
         magazine.setTitle(magazineDetails.getTitle());
         magazine.setIsbn(magazineDetails.getIsbn());
+        magazine.setPublicationDate(magazineDetails.getPublicationDate());
         magazine.setAuthors(magazineDetails.getAuthors());
-        magazine.setPublicDate(magazineDetails.getPublicDate());
 
         return magazineRepository.save(magazine);
     }
