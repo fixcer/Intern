@@ -1,4 +1,4 @@
-# Patinet React JS Project
+# Patient React JS Project
 
 ## What is the use of this Repo
 
