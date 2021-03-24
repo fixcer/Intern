@@ -9,19 +9,10 @@ const PatientPreview = ({ location, createPatient, editPatient }) => {
   let history = useHistory();
 
   const handleSave = async () => {
-    if (patient.id !== undefined) {
-      const hasError = await editPatient(patient.id, patient);
-      console.log(hasError);
-      if (hasError === 1) {
-        history.push('/patient/error');
-      } else if (hasError === 0) {
-        console.log('ja');
-        history.push('/patient/success', patient.id);
-      }
-    } else {
-      createPatient(patient);
-      history.push('/patient/success', patient.id);
-    }
+    patient.id !== undefined
+      ? editPatient(patient.id, patient)
+      : createPatient(patient);
+    history.push('/patient/success', patient.id);
   };
 
   return (

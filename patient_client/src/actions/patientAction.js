@@ -26,20 +26,14 @@ export const fetchPatient = (id) => async (dispatch) => {
 };
 
 export const editPatient = (id, formValues) => async (dispatch) => {
-  let hasError = 0;
-
   patients
     .patch(`/patient/${id}`, formValues)
     .then((v) => {
-      hasError = 0;
       dispatch({ type: EDIT_PATIENT, payload: v.data });
     })
     .catch((error) => {
-      hasError = 1;
       dispatch({ type: EDIT_PATIENT, payload: formValues });
     });
-
-  return hasError;
 };
 
 export const deletePatient = (id) => async (dispatch) => {
