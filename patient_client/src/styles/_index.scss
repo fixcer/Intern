@@ -1,0 +1,35 @@
+@import './patient-home';
+
+.link-create {
+  color: #fff;
+  &:hover {
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+.link {
+
+  &:hover {
+    text-decoration: none;
+    color:inherit;
+  }
+}
+
+label {
+  float: right;
+  margin-top: 5px;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: 28px;
+}
+
+.tick {
+  margin-top: 7px;
+}
+
+.display {
+  display: none;
+}
