@@ -3,10 +3,6 @@
 Training exercise for full-stack developer
 
 
-## Prerequisites
-
-- Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
-
 ## Build Postgres SQL from Docker Hub
 
 1. Download the source code or clone the repository
