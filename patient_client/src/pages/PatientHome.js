@@ -93,39 +93,39 @@ const PatientHome = ({ patients, fetchPatients }) => {
     <>
       <form className='ui grid form mt-5'>
         <div className='two wide column field'>
-          <div class='ui input'>
+          <div className='ui input'>
             <input type='text' placeholder='PatientID' />
           </div>
         </div>
         <div className='three wide column field'>
-          <div class='ui input'>
+          <div className='ui input'>
             <input type='text' placeholder='Name' />
           </div>
         </div>
         <div className='two wide column field'>
-          <select class='ui fluid dropdown'>
+          <select className='ui fluid dropdown'>
             <option value=''>Gender</option>
             <option value='Male'>Male</option>
             <option value='Female'>Female</option>
           </select>
         </div>
         <div className='two wide column field'>
-          <div class='ui input'>
+          <div className='ui input'>
             <input type='number' placeholder='Age' />
           </div>
         </div>
         <div className='three wide column field'>
-          <div class='ui input'>
+          <div className='ui input'>
             <input type='email' placeholder='Email' />
           </div>
         </div>
         <div className='three wide column field'>
-          <div class='ui input'>
+          <div className='ui input'>
             <input type='text' placeholder='Phone number' />
           </div>
         </div>
         <div className='one wide column'>
-          <button class='ui secondary button'>Filter</button>
+          <button className='ui secondary button'>Filter</button>
         </div>
       </form>
       <TableContainer component={Paper} className='mt-3'>

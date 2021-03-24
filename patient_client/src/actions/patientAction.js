@@ -26,6 +26,7 @@ export const fetchPatient = (id) => async (dispatch) => {
 };
 
 export const editPatient = (id, formValues) => async (dispatch) => {
+  console.log(formValues);
   const { data } = await patients.patch(`/patient/${id}`, formValues);
 
   dispatch({ type: EDIT_PATIENT, payload: data });

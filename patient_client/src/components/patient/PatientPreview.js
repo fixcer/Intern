@@ -83,7 +83,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     createPatient: (item) => dispatch(createPatient(item)),
-    editPatient: (item) => dispatch(editPatient(item)),
+    editPatient: (id, item) => dispatch(editPatient(id, item)),
   };
 };
 
