@@ -5,6 +5,7 @@ Training exercise for full-stack developer
 
 ## Contents
 
-- [Quick Start](#quick-start)
-- [Tech](#tech)
-- [Reference](#reference)
+- [Demo](#demo)
+- [Demo_REST_DB](#demo-rest-db)
+- [Patient](#patient)
+- [Patient Client](#patient-client)
