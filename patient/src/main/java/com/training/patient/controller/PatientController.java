@@ -11,22 +11,22 @@ import javax.validation.Valid;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/patients")
 public class PatientController {
     @Autowired
     private PatientService patientService;
 
-    @GetMapping("/patients")
+    @GetMapping("")
     public Page<Patient> fetchAllPatients(@RequestParam int pageNumber, @RequestParam int pageSize) {
         return patientService.fetchAll(pageNumber, pageSize);
     }
 
-    @GetMapping("/patients/size")
+    @GetMapping("/size")
     public int getSizePatients() {
         return patientService.getSize();
     }
 
-    @PostMapping("/patient")
+    @PostMapping("")
     public ResponseEntity<?> createPatient(@Valid @RequestBody Patient item) {
         item.setUpdated_at(new Date());
         item.setCreated_at(new Date());
@@ -35,24 +35,25 @@ public class PatientController {
         return ResponseEntity.status(200).body(patient);
     }
 
-    @GetMapping("/patient/{id}")
-    public Patient fetchPatient(@PathVariable(value = "id") Long id) {
-        return patientService.findById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<?> fetchPatient(@PathVariable(value = "id") Long id) {
+        Patient patient = patientService.findById(id);
+
+        return ResponseEntity.status(200).body(patient);
     }
 
-    @PatchMapping("/patient/{id}")
-    public ResponseEntity<?> updatePatient(@PathVariable(value = "id") Long id, @Valid @RequestBody Patient patientDetails) {
-        Patient currentPatient = fetchPatient(id);
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> updatePatient(@PathVariable(value = "id") Long id, @Valid @RequestBody Patient item) {
+        Patient patient = patientService.updatePatient(id, item);
 
-        if (currentPatient.getAge() == patientDetails.getAge() && currentPatient.getEmail().equals(patientDetails.getEmail()) && currentPatient.getName().equals(patientDetails.getName()) && currentPatient.getGender().equals(patientDetails.getGender()) && currentPatient.getPhone_number().equals(patientDetails.getPhone_number())) {
-            return ResponseEntity.badRequest().build();
+        if (patient.getId() != null) {
+            return  ResponseEntity.status(200).body(patient);
         }
-        Patient patient = patientService.updatePatient(id, patientDetails);
 
-        return  ResponseEntity.status(200).body(patient);
+        return  ResponseEntity.status(400).build();
     }
 
-    @DeleteMapping("/patient/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePatient(@PathVariable(value = "id") Long id) {
         return patientService.deletePatient(id);
     }

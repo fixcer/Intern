@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
-import java.util.List;
 
 
 @Service
@@ -43,15 +42,18 @@ public class PatientService {
         return patientRepository.save(patient);
     }
 
-    public Patient updatePatient(Long id, Patient patientDetails) {
+    public Patient updatePatient(Long id, Patient item) {
         Patient patient = patientRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Patient", "id", id));
 
+        if (patient.getAge() == item.getAge() && patient.getEmail().equals(item.getEmail()) && patient.getName().equals(item.getName()) && patient.getGender().equals(item.getGender()) && patient.getPhone_number().equals(item.getPhone_number())) {
+            return new Patient();
+        }
 
-        patient.setName(patientDetails.getName());
-        patient.setGender(patientDetails.getGender());
-        patient.setAge(patientDetails.getAge());
-        patient.setEmail(patientDetails.getEmail());
-        patient.setPhone_number(patientDetails.getPhone_number());
+        patient.setName(item.getName());
+        patient.setGender(item.getGender());
+        patient.setAge(item.getAge());
+        patient.setEmail(item.getEmail());
+        patient.setPhone_number(item.getPhone_number());
         patient.setUpdated_at(new Date());
 
         return patientRepository.save(patient);

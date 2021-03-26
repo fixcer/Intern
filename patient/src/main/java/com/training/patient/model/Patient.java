@@ -16,7 +16,6 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
-
 public class Patient {
 
     @Id
@@ -43,13 +42,32 @@ public class Patient {
 
     @NotNull Date updated_at;
 
-    @Override
-    public String toString() {
-        return "Patient: {" +
-                "Name=" + name +
-                ", Phone='" + phone_number + '\'' +
-                ", Created At='" + created_at + '\'' +
-                "}";
+    public Patient() {
+
     }
 
+    public Patient(Long id, @NotNull String name, @NotNull String gender, @NotNull int age, @Email String email, @NotNull String phone_number, @NotNull Date created_at, @NotNull Date updated_at) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                '}';
+    }
 }
