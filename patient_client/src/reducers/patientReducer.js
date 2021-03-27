@@ -17,9 +17,15 @@ export default (state = {}, action) => {
     case FETCH_PATIENT:
       return { ...state, [action.payload.id]: action.payload };
     case EDIT_PATIENT:
-      return { ...state, [action.payload.id]: action.payload };
+      state = state.filter((patient) => {
+        return patient.id !== action.payload.id;
+      });
+
+      return [...state, action.payload];
     case DELETE_PATIENT:
-      return _.omit(state, action.payload);
+      return _.remove(state, (patient) => {
+        return patient.id !== action.payload;
+      });
     default:
       return state;
   }

@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import { createPatient, editPatient } from '../../actions/patientAction';
 
 const PatientPreview = ({ location, createPatient, editPatient }) => {
-  const patient = location.state;
+  let patient = location.state;
+  const position = patient.position;
+  delete patient.position;
 
   let history = useHistory();
 
@@ -12,7 +14,7 @@ const PatientPreview = ({ location, createPatient, editPatient }) => {
     patient.id !== undefined
       ? editPatient(patient.id, patient)
       : createPatient(patient);
-    history.push('/patient/success', patient.id);
+    history.push('/patient/success', { id: patient.id, position });
   };
 
   return (

@@ -2,11 +2,11 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 const PatientSuccess = ({ location }) => {
-  const id = location.state;
+  const { id, position } = location.state;
   let history = useHistory();
 
   const handleClick = () => {
-    history.push('/');
+    history.push('/', position);
   };
 
   return (

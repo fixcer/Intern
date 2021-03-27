@@ -32,7 +32,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-const renderItem = (patients) => {
+const renderItem = (patients, pageNumber) => {
   return patients.map((patient) => (
     <StyledTableRow key={patient.id}>
       <StyledTableCell align='center'>{patient.id}</StyledTableCell>
@@ -46,7 +46,7 @@ const renderItem = (patients) => {
           className='link'
           to={{
             pathname: `/patient/edit/${patient.id}`,
-            state: { patient },
+            state: { patient, position: pageNumber },
           }}
         >
           Edit
@@ -66,7 +66,7 @@ const renderItem = (patients) => {
   ));
 };
 
-const PatientHome = ({ patients, fetchPatients }) => {
+const PatientHome = ({ patients, fetchPatients, location }) => {
   const [pageNumber, setPageNumber] = useState(0);
   const [totalPage, setTotalPage] = useState(2);
 
@@ -141,14 +141,17 @@ const PatientHome = ({ patients, fetchPatients }) => {
               <StyledTableCell align='center'></StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{renderItem(patients)}</TableBody>
+          <TableBody>{renderItem(patients, pageNumber)}</TableBody>
         </Table>
       </TableContainer>
 
       <div className='ui grid mt-2'>
         <div className='five wide column'>
           <button className='ui secondary button' variant='contained'>
-            <Link className='link-create' to='/patient/create'>
+            <Link
+              className='link-create'
+              to={{ pathname: '/patient/create', state: totalPage }}
+            >
               Create Patient
             </Link>
           </button>

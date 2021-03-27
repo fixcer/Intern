@@ -4,7 +4,13 @@ import PatientForm from '../components/patient/PatientForm';
 
 const PatientEdit = () => {
   let location = useLocation();
-  return <PatientForm title='Edit patient' patient={location.state.patient} />;
+  return (
+    <PatientForm
+      title='Edit patient'
+      patient={location.state.patient}
+      position={location.state.position}
+    />
+  );
 };
 
 export default PatientEdit;

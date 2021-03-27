@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 
-const PatientForm = (props) => {
-  const { title, patient } = props;
+const PatientForm = ({ title, patient, position }) => {
   const [gender, setGender] = useState('Male');
   const [tickName, setTickName] = useState('display');
   const [tickAge, setTickAge] = useState('display');
@@ -19,6 +18,7 @@ const PatientForm = (props) => {
   const onSubmit = (data) => {
     data['gender'] = gender;
     data['id'] = patient.id;
+    data['position'] = position;
     history.push('/patient/preview', data);
   };
 
