@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createPatient, editPatient } from '../../actions/patientAction';
 
 const PatientPreview = ({ location, createPatient, editPatient }) => {
+  const [error, setError] = useState(false);
   let patient = location.state;
   const position = patient.position;
   delete patient.position;
@@ -11,10 +12,18 @@ const PatientPreview = ({ location, createPatient, editPatient }) => {
   let history = useHistory();
 
   const handleSave = async () => {
-    patient.id !== undefined
-      ? editPatient(patient.id, patient)
-      : createPatient(patient);
-    history.push('/patient/success', { id: patient.id, position });
+    if (patient.id !== undefined) {
+      const response = await editPatient(patient.id, patient);
+      if (response.id) {
+        history.push('/patient/success', { id: patient.id, position });
+        setError(false);
+      } else {
+        setError(true);
+      }
+    } else {
+      createPatient(patient);
+      history.push('/patient/success', { id: patient.id, position });
+    }
   };
 
   return (
@@ -68,11 +77,18 @@ const PatientPreview = ({ location, createPatient, editPatient }) => {
             </button>
           </div>
           <div className='three wide column'>
-            <button className='ui secondary button' onClick={handleSave}>
+            <button
+              className='ui secondary button'
+              disabled={error === true ? true : false}
+              onClick={handleSave}
+            >
               Save
             </button>
           </div>
         </div>
+        {error === true ? (
+          <div className='mt-5 text-danger'>Opps, Something went wrong!</div>
+        ) : null}
       </div>
     </>
   );

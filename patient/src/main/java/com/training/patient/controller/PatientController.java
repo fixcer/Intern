@@ -2,6 +2,7 @@ package com.training.patient.controller;
 
 import com.training.patient.model.Patient;
 import com.training.patient.service.PatientService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,10 @@ public class PatientController {
             return  ResponseEntity.status(200).body(patient);
         }
 
-        return  ResponseEntity.status(400).build();
+        JSONObject res = new JSONObject();
+        res.put("status", 400);
+
+        return  ResponseEntity.status(400).body(res);
     }
 
     @DeleteMapping("/{id}")

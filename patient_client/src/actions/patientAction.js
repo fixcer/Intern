@@ -26,13 +26,15 @@ export const fetchPatient = (id) => async (dispatch) => {
 };
 
 export const editPatient = (id, formValues) => async (dispatch) => {
-  patients
+  return await patients
     .patch(`/patients/${id}`, formValues)
     .then((v) => {
       dispatch({ type: EDIT_PATIENT, payload: v.data });
+      return v.data;
     })
     .catch((error) => {
       dispatch({ type: EDIT_PATIENT, payload: formValues });
+      return error.response;
     });
 };
 
